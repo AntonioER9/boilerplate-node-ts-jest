@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "strict": true,
+        "useUnknownInCatchVariables": false
+    },
+    "include": ["src/**/*"]
+}
