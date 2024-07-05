@@ -31,7 +31,7 @@ describe('PasswordChecker test suite', () => {
   });
 
   it('Password with no lower case letter is invalid', () => { 
-    const actual = sut.checkPassword('1234ABCD');
+    const actual = sut.checkPassword('ABCD');
     expect(actual.reasons).toContain(PasswordErrors.NO_LOWER_CASE);
   });
 
@@ -44,6 +44,17 @@ describe('PasswordChecker test suite', () => {
     const actual = sut.checkPassword('1234abcD');
     expect(actual.reasons).toHaveLength(0);
     expect(actual.valid).toBeTruthy();
+  });
+
+  it('Admin password with no number is invalid', () => { 
+    const actual = sut.checkAdminPassword('abcdABCD');
+    expect(actual.reasons).toContain(PasswordErrors.NO_NUMBER);
+    expect(actual.valid).toBe(false);
+  });
+
+  it('Admin password with number is valid', () => { 
+    const actual = sut.checkAdminPassword('abcdABCD1');
+    expect(actual.reasons).not.toContain(PasswordErrors.NO_NUMBER);
   });
 
 });
